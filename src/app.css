@@ -1,0 +1,130 @@
+:root {
+  --red: #d93036;
+  --red-strong: #b4232a;
+  --amber: #e08f0b;
+  --green: #2f9e66;
+  --grey: #6e7079;
+
+  --bg: #ffffff;
+  --bg-subtle: #f4f5f7;
+  --surface: #ffffff;
+  --border: #e2e4e9;
+  --text: #17181c;
+  --text-muted: #62656f;
+  --accent: #3b5bdb;
+  --accent-text: #ffffff;
+  --success: #2f9e66;
+  --danger: #c92a2a;
+
+  --panel-bg: rgba(24, 25, 30, 0.96);
+  --panel-text: #f1f2f4;
+  --panel-muted: #a3a6b0;
+  --panel-border: rgba(255, 255, 255, 0.1);
+  --panel-hover: rgba(255, 255, 255, 0.07);
+
+  color-scheme: light dark;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif;
+  font-size: 14px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #18191d;
+    --bg-subtle: #212228;
+    --surface: #1f2026;
+    --border: #33353d;
+    --text: #eceef2;
+    --text-muted: #9a9daa;
+    --accent: #5c7cfa;
+    --success: #51cf66;
+    --danger: #ff6b6b;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  color: var(--text);
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+input,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+input[type="checkbox"] {
+  accent-color: var(--accent);
+}
+
+/* Shared layout and controls for the onboarding and settings windows. */
+.page {
+  min-height: 100vh;
+  padding: 28px 32px 24px;
+  background: var(--bg);
+}
+
+.page-footer {
+  margin-top: 20px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 12px;
+}
+.page-footer p {
+  margin: 0 0 4px;
+}
+
+.btn {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 14px;
+  background: var(--surface);
+  color: var(--text);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.btn:hover:not(:disabled) {
+  background: var(--bg-subtle);
+}
+.btn:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+.btn.primary {
+  border-color: transparent;
+  background: var(--accent);
+  color: var(--accent-text);
+}
+.btn.primary:hover:not(:disabled) {
+  background: var(--accent);
+  filter: brightness(1.08);
+}
+.btn.danger {
+  color: var(--danger);
+}
+
+.field {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+.field:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: -1px;
+}
