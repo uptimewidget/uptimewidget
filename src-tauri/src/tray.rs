@@ -105,6 +105,7 @@ fn build_menu(app: &AppHandle, view: &StatusView) -> tauri::Result<Menu<Wry>> {
         .item(&mute.build()?)
         .separator()
         .text("settings", s().settings)
+        .text("about", "About")
         .text("quit", s().quit)
         .build()
 }
@@ -115,6 +116,7 @@ fn on_menu_event(app: &AppHandle, event: MenuEvent) {
         "dashboard" => ui::open_url(app, ui::DASHBOARD_URL),
         "check" => app.state::<AppState>().poll_now(),
         "settings" => ui::open_settings(app),
+        "about" => ui::open_about(app),
         "unmute" => ui::unmute(app),
         "quit" => app.exit(0),
         _ => {

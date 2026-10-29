@@ -17,6 +17,7 @@ export const openMonitor = (id: number) => invoke<void>("open_monitor", { id });
 export const openDashboard = () => invoke<void>("open_dashboard");
 export const openApiKeysPage = () => invoke<void>("open_api_keys_page");
 export const openSettings = () => invoke<void>("open_settings");
+export const openRepository = () => invoke<void>("open_repository");
 
 /** Calls `handler` with the current status and on every change. */
 export async function subscribeStatus(handler: (status: StatusView) => void): Promise<UnlistenFn> {

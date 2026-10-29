@@ -76,6 +76,11 @@ const en = {
   never: "never",
   mutedUntil: "Muted until",
   unmute: "Unmute",
+
+  tagline: "Desktop & menu bar notifications for UptimeRobot",
+  version: "Version",
+  license: "Released under the MIT License.",
+  disclaimer: "Independent project – not affiliated with UptimeRobot.",
 };
 
 type Dict = typeof en;
@@ -142,6 +147,11 @@ const de: Dict = {
   never: "noch nie",
   mutedUntil: "Stummgeschaltet bis",
   unmute: "Aufheben",
+
+  tagline: "Desktop- & Menüleisten-Benachrichtigungen für UptimeRobot",
+  version: "Version",
+  license: "Veröffentlicht unter der MIT-Lizenz.",
+  disclaimer: "Unabhängiges Projekt – nicht mit UptimeRobot verbunden.",
 };
 
 const es: Dict = {
@@ -206,6 +216,11 @@ const es: Dict = {
   never: "nunca",
   mutedUntil: "Silenciado hasta",
   unmute: "Quitar silencio",
+
+  tagline: "Notificaciones de escritorio y barra de menús para UptimeRobot",
+  version: "Versión",
+  license: "Publicado bajo la licencia MIT.",
+  disclaimer: "Proyecto independiente, sin relación con UptimeRobot.",
 };
 
 const fr: Dict = {
@@ -270,6 +285,11 @@ const fr: Dict = {
   never: "jamais",
   mutedUntil: "En sourdine jusqu’à",
   unmute: "Réactiver",
+
+  tagline: "Notifications sur le bureau et dans la barre des menus pour UptimeRobot",
+  version: "Version",
+  license: "Publié sous licence MIT.",
+  disclaimer: "Projet indépendant, sans lien avec UptimeRobot.",
 };
 
 const zh: Dict = {
@@ -332,6 +352,11 @@ const zh: Dict = {
   never: "从未",
   mutedUntil: "静音至",
   unmute: "取消静音",
+
+  tagline: "UptimeRobot 的桌面与菜单栏通知",
+  version: "版本",
+  license: "基于 MIT 许可证发布。",
+  disclaimer: "独立项目，与 UptimeRobot 无关。",
 };
 
 const DICTS: Record<Lang, Dict> = { en, de, es, fr, zh };

@@ -1,8 +1,8 @@
 {
   "$schema": "../gen/schemas/desktop-schema.json",
   "identifier": "default",
-  "description": "Permissions for the widget, onboarding and settings windows",
-  "windows": ["widget", "onboarding", "settings"],
+  "description": "Permissions for the widget, onboarding, settings and about windows",
+  "windows": ["widget", "onboarding", "settings", "about"],
   "permissions": [
     "core:default",
     "core:window:allow-start-dragging",

@@ -13,8 +13,10 @@ use crate::tray;
 pub const WIDGET: &str = "widget";
 pub const ONBOARDING: &str = "onboarding";
 pub const SETTINGS: &str = "settings";
+pub const ABOUT: &str = "about";
 pub const DASHBOARD_URL: &str = "https://dashboard.uptimerobot.com/monitors";
 pub const API_KEYS_URL: &str = "https://dashboard.uptimerobot.com/integrations";
+pub const REPOSITORY_URL: &str = "https://github.com/uptimewidget/uptimewidget";
 pub const STATUS_EVENT: &str = "status-changed";
 pub const LANGUAGE_EVENT: &str = "language-changed";
 const SCREEN_MARGIN: f64 = 16.0;
@@ -135,7 +137,7 @@ fn open_window(app: &AppHandle, label: &str, title: &str, width: f64, height: f6
             let own_label = label.to_owned();
             window.on_window_event(move |event| {
                 if let tauri::WindowEvent::Destroyed = event {
-                    let other_dialog_open = [ONBOARDING, SETTINGS]
+                    let other_dialog_open = [ONBOARDING, SETTINGS, ABOUT]
                         .iter()
                         .any(|l| *l != own_label && handle.get_webview_window(l).is_some());
                     if !other_dialog_open {
@@ -160,10 +162,18 @@ pub fn open_settings(app: &AppHandle) {
     }
 }
 
+pub fn open_about(app: &AppHandle) {
+    open_window(app, ABOUT, s().about, 400.0, 420.0);
+}
+
 /// Switches the UI language; open windows reload themselves on the event.
 pub fn apply_language(app: &AppHandle, lang: Lang) {
     i18n::set_language(lang);
-    for (label, title) in [(ONBOARDING, s().setup_title), (SETTINGS, s().settings_title)] {
+    for (label, title) in [
+        (ONBOARDING, s().setup_title),
+        (SETTINGS, s().settings_title),
+        (ABOUT, s().about),
+    ] {
         if let Some(window) = app.get_webview_window(label) {
             let _ = window.set_title(title);
         }

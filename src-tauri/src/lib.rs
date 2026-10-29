@@ -41,6 +41,7 @@ pub fn run() {
             commands::open_api_keys_page,
             commands::open_settings,
             commands::get_language,
+            commands::open_repository,
         ])
         .setup(|app| {
             #[cfg(target_os = "macos")]

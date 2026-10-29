@@ -190,3 +190,8 @@ pub fn open_api_keys_page(app: AppHandle) {
 pub fn open_settings(app: AppHandle) {
     ui::open_settings(&app);
 }
+
+#[tauri::command]
+pub fn open_repository(app: AppHandle) {
+    ui::open_url(&app, ui::REPOSITORY_URL);
+}

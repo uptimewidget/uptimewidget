@@ -2,7 +2,9 @@
 name = "uptimewidget"
 version = "0.1.0"
 description = "Desktop & menu bar notifications for UptimeRobot"
-authors = ["you"]
+authors = ["Peter Bagi"]
+license = "MIT"
+repository = "https://github.com/uptimewidget/uptimewidget"
 edition = "2024"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
