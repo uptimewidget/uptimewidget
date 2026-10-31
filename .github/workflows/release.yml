@@ -31,9 +31,12 @@ jobs:
         with:
           targets: ${{ matrix.platform == 'macos-latest' && 'aarch64-apple-darwin,x86_64-apple-darwin' || '' }}
 
+      # Reuses the dependency cache built on main by cache-warmup.yml.
       - uses: swatinem/rust-cache@v2
         with:
           workspaces: src-tauri -> target
+          shared-key: release-${{ matrix.platform }}
+          save-if: false
 
       - run: npm ci
 

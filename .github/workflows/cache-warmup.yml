@@ -1,0 +1,45 @@
+name: Cache warm-up
+
+# Builds the release dependencies on main so tag builds can reuse the cache
+# (caches created on a tag are not visible to other tags).
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src-tauri/**"
+      - "package-lock.json"
+      - ".github/workflows/cache-warmup.yml"
+  workflow_dispatch:
+
+jobs:
+  warmup:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: macos-latest
+            args: --target universal-apple-darwin
+          - platform: windows-latest
+            args: ""
+    runs-on: ${{ matrix.platform }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.platform == 'macos-latest' && 'aarch64-apple-darwin,x86_64-apple-darwin' || '' }}
+
+      - uses: swatinem/rust-cache@v2
+        with:
+          workspaces: src-tauri -> target
+          shared-key: release-${{ matrix.platform }}
+
+      - run: npm ci
+
+      # Same compiler flags and features as the release build, without bundling or signing.
+      - run: npx tauri build --no-bundle ${{ matrix.args }}
