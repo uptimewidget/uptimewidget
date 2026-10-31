@@ -41,6 +41,7 @@ log = "0.4.34"
 thiserror = "2.0.21"
 reqwest = { version = "0.13.5", default-features = false, features = ["json", "rustls", "query", "system-proxy"] }
 sys-locale = "0.3.2"
+tauri-plugin-updater = "2"
 
 
 # Read the optimization guideline for more details: https://tauri.app/concept/size/#cargo-configuration

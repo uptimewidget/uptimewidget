@@ -7,6 +7,7 @@ use tauri::{AppHandle, Manager, Wry};
 use crate::i18n::{duration_since, s, sites_offline};
 use crate::state::{AppState, Level, StatusView};
 use crate::ui;
+use crate::updater::{self, MenuState};
 
 const TRAY_ID: &str = "main";
 const ICON_SIZE: u32 = 32;
@@ -99,8 +100,22 @@ fn build_menu(app: &AppHandle, view: &StatusView) -> tauri::Result<Menu<Wry>> {
         mute = mute.separator().text("unmute", s().unmute);
     }
 
-    menu.separator()
-        .text("dashboard", s().open_dashboard)
+    menu = menu.separator();
+    match updater::menu_state(app) {
+        MenuState::Available(version) => {
+            menu = menu
+                .text("update", s().install_update.replace("{v}", &version))
+                .separator();
+        }
+        MenuState::Installing => {
+            menu = menu
+                .item(&MenuItemBuilder::with_id("update", s().installing_update).enabled(false).build(app)?)
+                .separator();
+        }
+        MenuState::None => {}
+    }
+
+    menu.text("dashboard", s().open_dashboard)
         .text("check", s().check_now)
         .item(&mute.build()?)
         .separator()
@@ -117,6 +132,7 @@ fn on_menu_event(app: &AppHandle, event: MenuEvent) {
         "check" => app.state::<AppState>().poll_now(),
         "settings" => ui::open_settings(app),
         "about" => ui::open_about(app),
+        "update" => updater::spawn_install(app),
         "unmute" => ui::unmute(app),
         "quit" => app.exit(0),
         _ => {

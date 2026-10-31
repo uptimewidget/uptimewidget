@@ -163,7 +163,7 @@ pub fn open_settings(app: &AppHandle) {
 }
 
 pub fn open_about(app: &AppHandle) {
-    open_window(app, ABOUT, s().about, 400.0, 420.0);
+    open_window(app, ABOUT, s().about, 400.0, 470.0);
 }
 
 /// Switches the UI language; open windows reload themselves on the event.

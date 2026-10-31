@@ -8,6 +8,7 @@ use crate::secrets;
 use crate::settings::{self, Settings};
 use crate::state::{AppState, ErrorKind, StatusView};
 use crate::ui;
+use crate::updater;
 
 /// Longest mute the UI offers (5 hours).
 const MAX_MUTE_MINUTES: i64 = 300;
@@ -194,4 +195,20 @@ pub fn open_settings(app: AppHandle) {
 #[tauri::command]
 pub fn open_repository(app: AppHandle) {
     ui::open_url(&app, ui::REPOSITORY_URL);
+}
+
+#[tauri::command]
+pub async fn check_for_update(app: AppHandle) -> Result<updater::CheckResult, String> {
+    updater::check(&app).await.map_err(|e| {
+        log::warn!("update check failed: {e}");
+        e.to_string()
+    })
+}
+
+#[tauri::command]
+pub async fn install_update(app: AppHandle) -> Result<(), String> {
+    updater::install(&app).await.map_err(|e| {
+        log::warn!("update installation failed: {e}");
+        e.to_string()
+    })
 }

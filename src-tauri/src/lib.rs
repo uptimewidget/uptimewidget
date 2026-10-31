@@ -7,6 +7,7 @@ mod settings;
 mod state;
 mod tray;
 mod ui;
+mod updater;
 
 use tauri::{Manager, RunEvent, WindowEvent};
 use tauri_plugin_autostart::MacosLauncher;
@@ -24,6 +25,7 @@ pub fn run() {
         .plugin(tauri_plugin_store::Builder::new().build())
         .plugin(tauri_plugin_clipboard_manager::init())
         .plugin(tauri_plugin_autostart::init(MacosLauncher::LaunchAgent, None))
+        .plugin(tauri_plugin_updater::Builder::new().build())
         .invoke_handler(tauri::generate_handler![
             commands::get_status,
             commands::check_now,
@@ -42,6 +44,8 @@ pub fn run() {
             commands::open_settings,
             commands::get_language,
             commands::open_repository,
+            commands::check_for_update,
+            commands::install_update,
         ])
         .setup(|app| {
             #[cfg(target_os = "macos")]
@@ -54,6 +58,7 @@ pub fn run() {
             let key = secrets::load_key();
             let has_key = key.is_some();
             app.manage(AppState::new(key, settings.clone(), mute));
+            app.manage(updater::Updates::default());
 
             if let Some(widget) = app.get_webview_window(ui::WIDGET) {
                 ui::apply_widget_size(&handle, &settings);
@@ -73,6 +78,7 @@ pub fn run() {
             if !has_key {
                 ui::open_onboarding(&handle);
             }
+            updater::spawn_checker(handle.clone());
             state::spawn_poller(handle);
             Ok(())
         })

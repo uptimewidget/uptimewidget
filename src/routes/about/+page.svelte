@@ -7,6 +7,34 @@
 
   let version = $state("");
 
+  type UpdateState =
+    | { kind: "idle" }
+    | { kind: "checking" }
+    | { kind: "upToDate" }
+    | { kind: "available"; version: string }
+    | { kind: "installing" }
+    | { kind: "failed" };
+  let update = $state<UpdateState>({ kind: "idle" });
+
+  async function checkForUpdate() {
+    update = { kind: "checking" };
+    try {
+      const result = await api.checkForUpdate();
+      update = result.status === "available" ? { kind: "available", version: result.version } : { kind: "upToDate" };
+    } catch {
+      update = { kind: "failed" };
+    }
+  }
+
+  async function installUpdate() {
+    update = { kind: "installing" };
+    try {
+      await api.installUpdate();
+    } catch {
+      update = { kind: "failed" };
+    }
+  }
+
   onMount(async () => {
     version = await getVersion();
   });
@@ -27,6 +55,22 @@
         />
       </svg>
     </button>
+  </div>
+
+  <div class="update">
+    {#if update.kind === "available"}
+      <span>{t.updateAvailable.replace("{v}", update.version)}</span>
+      <button class="btn primary" onclick={installUpdate}>{t.installUpdate}</button>
+    {:else if update.kind === "installing"}
+      <span>{t.installingUpdate}</span>
+    {:else}
+      <span class="muted">
+        {#if update.kind === "upToDate"}{t.upToDate}{:else if update.kind === "failed"}{t.updateFailed}{/if}
+      </span>
+      <button class="btn" onclick={checkForUpdate} disabled={update.kind === "checking"}>
+        {update.kind === "checking" ? t.checkingUpdates : t.checkUpdates}
+      </button>
+    {/if}
   </div>
 
   <footer class="page-footer">
@@ -54,6 +98,18 @@
     margin: 0;
     font-weight: 600;
     font-variant-numeric: tabular-nums;
+  }
+
+  .update {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 16px;
+    min-height: 36px;
+  }
+  .muted {
+    color: var(--text-muted);
   }
 
   .github {

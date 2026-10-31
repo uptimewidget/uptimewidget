@@ -81,6 +81,13 @@ const en = {
   version: "Version",
   license: "Released under the MIT License.",
   disclaimer: "Independent project – not affiliated with UptimeRobot.",
+  checkUpdates: "Check for updates",
+  checkingUpdates: "Checking …",
+  upToDate: "UptimeWidget is up to date.",
+  updateAvailable: "Version {v} is available.",
+  installUpdate: "Install & restart",
+  installingUpdate: "Installing …",
+  updateFailed: "Update failed. Please try again later.",
 };
 
 type Dict = typeof en;
@@ -152,6 +159,13 @@ const de: Dict = {
   version: "Version",
   license: "Veröffentlicht unter der MIT-Lizenz.",
   disclaimer: "Unabhängiges Projekt – nicht mit UptimeRobot verbunden.",
+  checkUpdates: "Nach Updates suchen",
+  checkingUpdates: "Wird geprüft …",
+  upToDate: "UptimeWidget ist aktuell.",
+  updateAvailable: "Version {v} ist verfügbar.",
+  installUpdate: "Installieren & neu starten",
+  installingUpdate: "Wird installiert …",
+  updateFailed: "Update fehlgeschlagen. Bitte später erneut versuchen.",
 };
 
 const es: Dict = {
@@ -221,6 +235,13 @@ const es: Dict = {
   version: "Versión",
   license: "Publicado bajo la licencia MIT.",
   disclaimer: "Proyecto independiente, sin relación con UptimeRobot.",
+  checkUpdates: "Buscar actualizaciones",
+  checkingUpdates: "Comprobando …",
+  upToDate: "UptimeWidget está actualizado.",
+  updateAvailable: "La versión {v} está disponible.",
+  installUpdate: "Instalar y reiniciar",
+  installingUpdate: "Instalando …",
+  updateFailed: "La actualización ha fallado. Inténtalo más tarde.",
 };
 
 const fr: Dict = {
@@ -290,6 +311,13 @@ const fr: Dict = {
   version: "Version",
   license: "Publié sous licence MIT.",
   disclaimer: "Projet indépendant, sans lien avec UptimeRobot.",
+  checkUpdates: "Rechercher des mises à jour",
+  checkingUpdates: "Vérification …",
+  upToDate: "UptimeWidget est à jour.",
+  updateAvailable: "La version {v} est disponible.",
+  installUpdate: "Installer et redémarrer",
+  installingUpdate: "Installation …",
+  updateFailed: "La mise à jour a échoué. Réessayez plus tard.",
 };
 
 const zh: Dict = {
@@ -357,6 +385,13 @@ const zh: Dict = {
   version: "版本",
   license: "基于 MIT 许可证发布。",
   disclaimer: "独立项目，与 UptimeRobot 无关。",
+  checkUpdates: "检查更新",
+  checkingUpdates: "正在检查 …",
+  upToDate: "UptimeWidget 已是最新版本。",
+  updateAvailable: "新版本 {v} 可用。",
+  installUpdate: "安装并重启",
+  installingUpdate: "正在安装 …",
+  updateFailed: "更新失败，请稍后重试。",
 };
 
 const DICTS: Record<Lang, Dict> = { en, de, es, fr, zh };

@@ -19,6 +19,11 @@ export const openApiKeysPage = () => invoke<void>("open_api_keys_page");
 export const openSettings = () => invoke<void>("open_settings");
 export const openRepository = () => invoke<void>("open_repository");
 
+export type UpdateCheck = { status: "upToDate" } | { status: "available"; version: string };
+export const checkForUpdate = () => invoke<UpdateCheck>("check_for_update");
+/** Resolves only on failure; on success the app restarts. */
+export const installUpdate = () => invoke<void>("install_update");
+
 /** Calls `handler` with the current status and on every change. */
 export async function subscribeStatus(handler: (status: StatusView) => void): Promise<UnlistenFn> {
   const unlisten = await listen<StatusView>("status-changed", (event) => handler(event.payload));
