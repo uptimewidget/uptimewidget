@@ -44,6 +44,7 @@ pub fn run() {
             commands::open_settings,
             commands::get_language,
             commands::open_repository,
+            commands::open_author_website,
             commands::check_for_update,
             commands::install_update,
         ])

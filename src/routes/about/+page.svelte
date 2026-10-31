@@ -73,6 +73,12 @@
     {/if}
   </div>
 
+  <button class="author" onclick={() => api.openAuthorWebsite()}>
+    <span>{t.madeBy} <strong>Peter Bagi</strong></span>
+    <span class="pitch">{t.authorPitch}</span>
+    <span class="link">peterbagi.de ↗</span>
+  </button>
+
   <footer class="page-footer">
     <p>© 2026 Peter Bagi · {t.license}</p>
     <p>{t.disclaimer}</p>
@@ -110,6 +116,31 @@
   }
   .muted {
     color: var(--text-muted);
+  }
+
+  .author {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    width: 100%;
+    margin-top: 16px;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    color: var(--text);
+    text-align: left;
+  }
+  .author:hover {
+    background: var(--bg-subtle);
+  }
+  .pitch {
+    color: var(--text-muted);
+    font-size: 13px;
+  }
+  .link {
+    color: var(--accent);
+    font-size: 13px;
   }
 
   .github {

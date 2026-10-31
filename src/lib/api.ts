@@ -18,6 +18,7 @@ export const openDashboard = () => invoke<void>("open_dashboard");
 export const openApiKeysPage = () => invoke<void>("open_api_keys_page");
 export const openSettings = () => invoke<void>("open_settings");
 export const openRepository = () => invoke<void>("open_repository");
+export const openAuthorWebsite = () => invoke<void>("open_author_website");
 
 export type UpdateCheck = { status: "upToDate" } | { status: "available"; version: string };
 export const checkForUpdate = () => invoke<UpdateCheck>("check_for_update");

@@ -17,6 +17,8 @@ pub const ABOUT: &str = "about";
 pub const DASHBOARD_URL: &str = "https://dashboard.uptimerobot.com/monitors";
 pub const API_KEYS_URL: &str = "https://dashboard.uptimerobot.com/integrations";
 pub const REPOSITORY_URL: &str = "https://github.com/uptimewidget/uptimewidget";
+pub const AUTHOR_URL: &str =
+    "https://www.peterbagi.de/?utm_source=uptimewidget&utm_medium=app&utm_campaign=freelance";
 pub const STATUS_EVENT: &str = "status-changed";
 pub const LANGUAGE_EVENT: &str = "language-changed";
 const SCREEN_MARGIN: f64 = 16.0;
@@ -163,7 +165,7 @@ pub fn open_settings(app: &AppHandle) {
 }
 
 pub fn open_about(app: &AppHandle) {
-    open_window(app, ABOUT, s().about, 400.0, 470.0);
+    open_window(app, ABOUT, s().about, 400.0, 540.0);
 }
 
 /// Switches the UI language; open windows reload themselves on the event.

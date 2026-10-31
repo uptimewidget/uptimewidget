@@ -97,6 +97,10 @@ src/
 
 The backend owns all state and keeps polling while every window is hidden. Windows receive updates through the `status-changed` event.
 
+## Author
+
+UptimeWidget started as a small idea and became a signed, cross-platform app with auto-updates in five languages. I'm Peter Bagi, a freelance software developer who turns ideas like this into finished products. If you have one you'd like to see built, get in touch: [peterbagi.de](https://www.peterbagi.de/?utm_source=uptimewidget&utm_medium=readme&utm_campaign=freelance)
+
 ## License
 
 [MIT](LICENSE) © 2026 Peter Bagi

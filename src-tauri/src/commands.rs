@@ -198,6 +198,11 @@ pub fn open_repository(app: AppHandle) {
 }
 
 #[tauri::command]
+pub fn open_author_website(app: AppHandle) {
+    ui::open_url(&app, ui::AUTHOR_URL);
+}
+
+#[tauri::command]
 pub async fn check_for_update(app: AppHandle) -> Result<updater::CheckResult, String> {
     updater::check(&app).await.map_err(|e| {
         log::warn!("update check failed: {e}");
